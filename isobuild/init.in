@@ -110,9 +110,9 @@ do_mount_root()
        echo "Successfully mounted device $device"
    fi
 
-   if ! mount "$device/$root" /.root ; then
+   if ! mount "$TMP_MOUNT/$root" /.root ; then
        no_mount $device/$root
-       cat /proc/partitions
+       #cat /proc/partitions
        while true ; do sleep 10000 ; done
    else
        echo "Successfully mounted $root!"
