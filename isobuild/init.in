@@ -44,7 +44,8 @@ do_mount_root()
    TMP_MOUNT="/mnt"
 
    CDROM_LIST="/dev/sdb1 /dev/sr0 /dev/sr1 /dev/cdrom /dev/hda /dev/hdb
-   /dev/hdc /dev/hdd /dev/hde /dev/sda1"
+   /dev/hdc /dev/hdd /dev/hde /dev/sda1 /dev/sda2 /dev/sda3 /dev/sda4
+   /dev/sda5 /dev/sda6 /dev/sda7 /dev/sda8 /dev/sda9"
 
    CHECK_TYPE="try_mount"
 
