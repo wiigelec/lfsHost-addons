@@ -33,61 +33,61 @@ do_mount_root()
    [ -n "$rootflags" ] && rootflags="$rootflags,"
    rootflags="$rootflags$ro"
 
-#------------------------------------------------------------------   
-# Find root device
+   #------------------------------------------------------------------   
+   # Find root device
 
-echo "Waiting 10s for /dev..."
-sleep 10
-echo "Searching for root file system..."
+   echo "Waiting 10s for /dev..."
+   sleep 10
+   echo "Searching for $root..."
 
-ID=$root
-TMP_MOUNT="/mnt"
+   ID=$root
+   TMP_MOUNT="/mnt"
 
-CDROM_LIST="/dev/sdb1 /dev/sr0 /dev/sr1 /dev/cdrom /dev/hda /dev/hdb
-/dev/hdc /dev/hdd /dev/hde /dev/sda1"
+   CDROM_LIST="/dev/sdb1 /dev/sr0 /dev/sr1 /dev/cdrom /dev/hda /dev/hdb
+   /dev/hdc /dev/hdd /dev/hde /dev/sda1"
 
-CHECK_TYPE="try_mount"
+   CHECK_TYPE="try_mount"
 
-LFS_CDROM_DEVICE=""
-echo "Using $CHECK_TYPE"
-for cdrom_device in $CDROM_LIST
-do
-  echo -n "Checking $cdrom_device ... "
+   LFS_CDROM_DEVICE=""
+   #echo "Using $CHECK_TYPE"
+   for cdrom_device in $CDROM_LIST
+   do
+     echo -n "Trying $cdrom_device ... "
 
-  if [ "$CHECK_TYPE" = "try_mount" ]; then
-    mount $cdrom_device $TMP_MOUNT > /dev/null 2>&1
-    media_found=$?
-  fi
+     if [ "$CHECK_TYPE" = "try_mount" ]; then
+       mount $cdrom_device $TMP_MOUNT > /dev/null 2>&1
+       media_found=$?
+     fi
 
-  if [ $media_found -eq 0 ]; then
+     if [ $media_found -eq 0 ]; then
 
-    echo -n "media found"
-    if [ "$CHECK_TYPE" = "try_mount" ]; then
-      [ -e "$TMP_MOUNT/$ID" ]
-      media_lfs=$?
-    fi
+       echo -n "media found"
+       if [ "$CHECK_TYPE" = "try_mount" ]; then
+         [ -e "$TMP_MOUNT/$ID" ]
+         media_lfs=$?
+       fi
 
-    if [ "$CHECK_TYPE" = "try_mount" ]; then
-      umount $cdrom_device > /dev/null 2>&1
-    fi
+       if [ "$CHECK_TYPE" = "try_mount" ]; then
+         umount $cdrom_device > /dev/null 2>&1
+       fi
 
-    if [ $media_lfs -eq 0 ]; then
-      echo ", LFS boot CD found. Ready!"
-      LFS_CDROM_DEVICE="$cdrom_device"
-      break;
-    else
-      echo ", not LFS boot CD."
-    fi
+       if [ $media_lfs -eq 0 ]; then
+         echo "Found $root on $cdrom_device"
+         LFS_CDROM_DEVICE="$cdrom_device"
+         break;
+       else
+         echo "$root not found"
+       fi
 
-  else
-    echo "no media "
-  fi
-done
+     else
+       echo "NO DEVICE FOUND"
+     fi
+   done
 
-device=$cdrom_device
+   device=$cdrom_device
 
-# END Find root device
-#-----------------------------------------------------------------------
+   # END Find root device
+   #-----------------------------------------------------------------------
 
    case "$root" in
       /dev/*    ) device=$root ;;
@@ -104,7 +104,7 @@ device=$cdrom_device
 
    if ! mount -n -t "$rootfstype" -o "$rootflags" "$device" /mnt ; then
        no_mount $device
-       cat /proc/partitions
+       #cat /proc/partitions
        while true ; do sleep 10000 ; done
    else
        echo "Successfully mounted device $device"
@@ -112,7 +112,7 @@ device=$cdrom_device
 
    if ! mount "$TMP_MOUNT/$root" /.root ; then
        no_mount $device/$root
-       cat /proc/partitions
+       #cat /proc/partitions
        while true ; do sleep 10000 ; done
    else
        echo "Successfully mounted $root!"
