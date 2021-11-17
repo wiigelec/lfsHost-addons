@@ -104,7 +104,7 @@ do_mount_root()
 
    if ! mount -n -t "$rootfstype" -o "$rootflags" "$device" /mnt ; then
        no_mount $device
-       cat /proc/partitions
+       #cat /proc/partitions
        while true ; do sleep 10000 ; done
    else
        echo "Successfully mounted device $device"
