@@ -9,30 +9,9 @@
 
 
 #---------------------------------------------------------------------
-# Enter LFS chroot
-
-export LFS=/mnt/lfs
-
-mount -v --bind /dev $LFS/dev
-mount -v --bind /dev/pts $LFS/dev/pts
-mount -vt proc proc $LFS/proc
-mount -vt sysfs sysfs $LFS/sys
-mount -vt tmpfs tmpfs $LFS/run
-if [ -h $LFS/dev/shm ]; then
-  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
-fi
-
-chroot "$LFS" /usr/bin/env -i          \
-    HOME=/root TERM="$TERM"            \
-    PS1='(lfs chroot) \u:\w\$ '        \
-    PATH=/usr/bin:/usr/sbin            \
-    /bin/bash --login
-
-
-#---------------------------------------------------------------------
 # Install create_ramdisk startup script
 
-cat > /etc/rc.d/init.d/create_ramdisk << "EOF"
+cat > /mnt/lfs/etc/rc.d/init.d/create_ramdisk << "EOF"
 #!/bin/sh
 
 dev_ram=/dev/ram0
@@ -67,16 +46,16 @@ case "$1" in
                 ;;
 esac
 
-chmod 0755 /etc/rc.d/init.d/create_ramdisk
-cd /etc/rc.d/rcS.d
+chmod 0755 /mnt/lfs/etc/rc.d/init.d/create_ramdisk
+cd /mnt/lfs/etc/rc.d/rcS.d
 ln -s ../init.d/create_ramdisk S01create_ramdisk
 
 
 #---------------------------------------------------------------------
 # Update fstab
 
-rm /etc/fstab
-cat > /etc/fstab << "EOF"
+rm /mnt/lfs/etc/fstab
+cat > /mnt/lfs/etc/fstab << "EOF"
 # Begin /etc/fstab for bootable media
 
 # file system  mount-point  type   options         dump  fsck
@@ -95,7 +74,7 @@ EOF
 #---------------------------------------------------------------------
 # Update mountfs
 
-cd /etc/rc.d/init.d
+cd /mnt/lfs/etc/rc.d/init.d
 cp -f mountfs mountfs.org
 grep -v 'remount' mountfs.org >mountfs
 chmod 0755 mountfs
@@ -104,26 +83,14 @@ chmod 0755 mountfs
 #---------------------------------------------------------------------
 # Create ramdisk symlinks
 
-mkdir -p /fake/{needwrite,ramdisk}
-cd /
+mkdir -p /mnt/lfs/fake/{needwrite,ramdisk}
+cd /mnt/lfs
 mv etc/ var/ root/ home/ tmp/ fake/needwrite/
 ln -s fake/needwrite/etc etc
 ln -s fake/needwrite/var var
 ln -s fake/needwrite/root root
 ln -s fake/needwrite/home home
 ln -s fake/needwrite/tmp tmp
-
-
-
-#---------------------------------------------------------------------
-# Exit LFS chroot
-
-exit
-umount $LFS/dev/pts
-umount $LFS/dev
-umount $LFS/proc
-umount $LFS/sys
-umount $LFS/run
 
 
 # END SCRIPT
