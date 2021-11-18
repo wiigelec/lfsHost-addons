@@ -7,7 +7,6 @@
 # https://www.linuxfromscratch.org/hints/downloads/files/boot-cd_easy.txt
 #---------------------------------------------------------------------
 
-su - root
 
 #---------------------------------------------------------------------
 # Install create_ramdisk startup script
