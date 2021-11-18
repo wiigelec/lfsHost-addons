@@ -4,7 +4,7 @@ dev_ram=/dev/ram0
 dir_ramdisk=/fake/ramdisk
 dir_needwrite=/fake/needwrite
 
-source /etc/rc.d/init.d/functions
+. /lib/lsb/init-functions
 
 case "$1" in
         start)
