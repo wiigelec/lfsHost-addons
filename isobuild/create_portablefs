@@ -7,9 +7,12 @@
 # https://www.linuxfromscratch.org/hints/downloads/files/boot-cd_easy.txt
 #---------------------------------------------------------------------
 
+echo "Creating portable file system on /mnt/lfs:"
 
 #---------------------------------------------------------------------
 # Install create_ramdisk startup script
+
+echo "Installing create_ramdisk startup script..."
 
 cat > /mnt/lfs/etc/rc.d/init.d/create_ramdisk << "EOF"
 #!/bin/sh
@@ -54,6 +57,8 @@ ln -s ../init.d/create_ramdisk S01create_ramdisk
 #---------------------------------------------------------------------
 # Update fstab
 
+echo "Updating fstab..."
+
 rm /mnt/lfs/etc/fstab
 cat > /mnt/lfs/etc/fstab << "EOF"
 # Begin /etc/fstab for bootable media
@@ -74,6 +79,8 @@ EOF
 #---------------------------------------------------------------------
 # Update mountfs
 
+echo "Updating mounfs startup script..."
+
 cd /mnt/lfs/etc/rc.d/init.d
 cp -f mountfs mountfs.org
 grep -v 'remount' mountfs.org >mountfs
@@ -82,6 +89,8 @@ chmod 0755 mountfs
 
 #---------------------------------------------------------------------
 # Create ramdisk symlinks
+
+echo "Creating ramdisk fake symlinks..."
 
 mkdir -p /mnt/lfs/fake/{needwrite,ramdisk}
 cd /mnt/lfs
@@ -92,6 +101,7 @@ ln -s fake/needwrite/root root
 ln -s fake/needwrite/home home
 ln -s fake/needwrite/tmp tmp
 
+echo "Done."
 
 # END SCRIPT
 #---------------------------------------------------------------------
