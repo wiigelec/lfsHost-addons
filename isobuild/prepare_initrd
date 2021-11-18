@@ -3,7 +3,7 @@
 #---------------------------------------------------------------------
 # ABOUT:
 # This script will create the necessary files for generating
-# an initrd from /mn/lfs per:
+# an initrd from /mnt/lfs per:
 # https://www.linuxfromscratch.org/blfs/view/svn/postlfs/initramfs.html
 #---------------------------------------------------------------------
 
