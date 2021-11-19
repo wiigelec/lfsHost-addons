@@ -1,0 +1,18 @@
+#!/bin/sh
+
+#-------------------------------------------------------------------
+# Clean files
+
+echo "Cleaning lfsHost-build files from /mnt/lfs..."
+
+rm /mnt/lfs/README.md
+rm -rf /mnt/lfs/jhalfs
+rm -rf /mnt/lfs/sources/
+rm -rf /mnt/lfs/var/lib/jhalfs
+rm -rf /mnt/lfs/home/builder/blfs_root
+rm -rf /mnt/lfs/home/blfs-builder/blfs_root
+rm -rf /mnt/lfs/root/blfs_base1
+rm /mnt/lfs/root/lfschroot.sh
+
+
+echo "Done."
