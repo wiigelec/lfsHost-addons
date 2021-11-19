@@ -14,7 +14,7 @@ echo "Generating mkinitramfs scripts:"
 
 echo "Generating /mnt/lfs/usr/sbin/mkinitramfs..."
 
-cat > /usr/sbin/mkinitramfs << "EOF"
+cat > /mnt/lfs/usr/sbin/mkinitramfs << "EOF"
 #!/bin/bash
 # This file based in part on the mkinitramfs script for the LFS LiveCD
 # written by Alexander E. Patrakov and Jeremy Huntwork.
@@ -196,16 +196,16 @@ rm -rf $WDIR $unsorted
 printf "done.\n"
 EOF
 
-chmod 0755 /usr/sbin/mkinitramfs
+chmod 0755 /mnt/lfs/usr/sbin/mkinitramfs
 
 #---------------------------------------------------------------------
 # /usr/share/mkinitramfs/init.in
 
 echo "Generating /mnt/lfs//usr/share/mkinitramfs/init.in..."
 
-mkdir -p /usr/share/mkinitramfs
+mkdir -p /mnt/lfs/usr/share/mkinitramfs
 
-cat > /usr/share/mkinitramfs/init.in << "EOF"
+cat > /mnt/lfs/usr/share/mkinitramfs/init.in << "EOF"
 #!/bin/sh
 PATH=/usr/bin:/usr/sbin
 export PATH
