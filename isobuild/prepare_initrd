@@ -365,6 +365,12 @@ exec switch_root /.root "$init" "$@"
 EOF
 
 echo "Done."
+echo "*********************"
+echo "NOW YOU MUST:"
+echo "1) CHROOT"
+echo "2) INSTALL CPIO"
+echo "3) RUN MKINITRAMFS"
+echo "*********************"
 
 
 # END of script
