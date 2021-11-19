@@ -14,7 +14,6 @@ rm -rf /mnt/lfs/home/blfs-builder/blfs_root
 rm -rf /mnt/lfs/root/blfs_base1
 rm /mnt/lfs/root/lfschroot.sh
 
-
 echo "Done."
 
 # END script
