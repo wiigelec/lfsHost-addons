@@ -104,7 +104,7 @@ ln -s fake/needwrite/tmp tmp
 #---------------------------------------------------------------------
 # Install /mnt/lfs
 
-mkdir /mnt/lfs
+mkdir /mnt/lfs/mnt/lfs
 
 
 echo "Done."
