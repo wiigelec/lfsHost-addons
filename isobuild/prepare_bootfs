@@ -49,6 +49,8 @@ case "$1" in
                 ;;
 esac
 
+EOF
+
 chmod 0755 /mnt/lfs/etc/rc.d/init.d/create_ramdisk
 cd /mnt/lfs/etc/rc.d/rcS.d
 ln -s ../init.d/create_ramdisk S01create_ramdisk

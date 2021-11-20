@@ -14,6 +14,9 @@ rm -rf /mnt/lfs/home/blfs-builder/blfs_root
 rm -rf /mnt/lfs/root/blfs_base1
 rm /mnt/lfs/root/lfschroot.sh
 
+echo "Truncating /mnt/lfs log files..."
+find /mnt/lfs/var/log -type f -iname '*.log' -print0 | xargs -0 truncate -s0
+
 echo "Done."
 
 # END script
