@@ -81,7 +81,7 @@ EOF
 #---------------------------------------------------------------------
 # Update mountfs
 
-echo "Updating mounfs startup script..."
+echo "Updating mountfs startup script..."
 
 cd /mnt/lfs/etc/rc.d/init.d
 cp -f mountfs mountfs.org
