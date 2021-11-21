@@ -110,6 +110,7 @@ mkdir /mnt/lfs/mnt/lfs
 
 
 echo "Done."
+echo "DID YOU DISABLE SUDO PASSWD?"
 
 # END SCRIPT
 #---------------------------------------------------------------------
