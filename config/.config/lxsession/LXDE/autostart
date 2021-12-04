@@ -1,0 +1,8 @@
+@lxpanel --profile LXDE
+@pcmanfm --desktop --profile LXDE
+@xscreensaver -no-splash
+
+# User apps
+@redshift -O 2700
+@xcompmgr
+@conky -c /home/wiigelec/.config/.myconky

@@ -6,8 +6,7 @@
 echo "Cleaning lfsHost-build files from /mnt/lfs..."
 
 # /home/(blfs-)builder
-rm /mnt/lfs/home/builder/get-lfshostsrc.sh
-rm -rf /mnt/lfs/home/builder/blfs_root
+rm -rf /mnt/lfs/home/builder/
 rm -rf /mnt/lfs/home/blfs-builder
 
 # /jhalfs
@@ -15,9 +14,10 @@ rm -rf /mnt/lfs/jhalfs
 
 # /root
 rm /mnt/lfs/root/build-kernel.sh
+rm /mnt/lfs/root/kernel-config.*
 rm /mnt/lfs/root/lfs-chroot.sh
 rm /mnt/lfs/root/lfs-umount.sh
-rm -rf /mnt/lfs/root/blfs_base1
+rm -rf /mnt/lfs/root/blfs_root
 
 # /sources
 rm -rf /mnt/lfs/sources/

@@ -1,0 +1,90 @@
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2019 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+
+	own_window = true,
+-- 	own_window_type = 'override',
+	own_window_hints = 'undecorated,skip_taskbar,sticky',
+ 	own_window_argb_visual = true,
+	own_window_argb_value = 150,
+
+	use_xft = true,
+	font = 'DejaVu Sans Mono:size=12',
+
+	alignment = 'top_right',
+	gap_y = 7,
+	gap_x = 7,
+
+	double_buffer = true,
+	update_interval = 2,
+	total_run_times = 0,
+
+	cpu_avg_samples = 1,
+
+	net_avg_samples = 1,
+
+
+}
+conky.text = [[
+${color green}SYSTEM:
+${color grey}Host:$color $nodename 
+${color grey}Kernel:$color $kernel
+${color grey}Uptime:$color $uptime
+$stippled_hr
+${color green}PROCESSOR:
+${color}${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | sed 's/[ ]\+/ /g' | sed -e 's/(R)//g' | sed -e 's/(TM)//g'}
+${alignr}${color}${freq 1} MHz
+${alignc}${color}${voffset -20}${execi 5 sensors | grep CPU | sed -e 's/.*+//g' } ${execi 5 sensors|grep 'Fan' | sed -e 's/.*://g'}
+${voffset -20}${color grey}CPU:$color ${cpu cpu 0}%${goto 100}
+${color #75839D}${alignc}${cpugraph 50,400 C53F30 C53F30}
+${color grey}RAM:$color $mem / $memmax  ${execi 5 sensors | grep SODIMM | sed -e 's/.*.+//g'}
+${color #75839D}${alignc}${memgraph 50,400 C53F30 C53F30}
+${color grey}Graphics: ${color} ${exec sensors | grep GPU: | sed -e 's/.*+//g'}
+${color}${exec /sbin/lspci | grep VGA | sed -e 's/.*: //g' | sed -e 's/ (.*//g'}
+${color}$stippled_hr
+${color green}DISK:
+${color grey}swap    $color${swap} / ${swapmax}
+${color grey}/       $color${fs_used /} / ${fs_size /} ${fs_used_perc /}%
+${color #75839D}${alignc}${diskiograph /dev/sda 50,400 C53F30 C53F30}
+${color}$stippled_hr
+${color green}NETWORK:
+${color}${exec /sbin/lspci | grep 'Network controller' | sed -e 's/.*: //g' | sed -e 's/ (.*//g' | sed -e 's/Intel Corporation/Intel/g'}
+${color grey}IP: ${color}${addr wlan0}
+${color grey}Download:$color ${downspeed wlan0}
+${color #75839D}${alignc}${downspeedgraph wlan0 50,400 C53F30 C53F30}
+${color}$stippled_hr
+${color green}PROCESSES:
+${color grey}Name              PID     CPU%   MEM%
+${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
+${color lightgrey} ${top name 5} ${top pid 5} ${top cpu 5} ${top mem 5}
+${color lightgrey} ${top name 6} ${top pid 6} ${top cpu 6} ${top mem 6}
+${color lightgrey} ${top name 7} ${top pid 7} ${top cpu 7} ${top mem 7}
+${color lightgrey} ${top name 8} ${top pid 8} ${top cpu 8} ${top mem 8}
+]]

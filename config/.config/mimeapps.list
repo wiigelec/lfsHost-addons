@@ -1,0 +1,23 @@
+[Default Applications]
+x-scheme-handler/http=userapp-Firefox-4SF8B1.desktop
+x-scheme-handler/https=userapp-Firefox-4SF8B1.desktop
+x-scheme-handler/chrome=userapp-Firefox-4SF8B1.desktop
+text/html=userapp-Firefox-4SF8B1.desktop
+application/x-extension-htm=userapp-Firefox-4SF8B1.desktop
+application/x-extension-html=userapp-Firefox-4SF8B1.desktop
+application/x-extension-shtml=userapp-Firefox-4SF8B1.desktop
+application/xhtml+xml=userapp-Firefox-4SF8B1.desktop
+application/x-extension-xhtml=userapp-Firefox-4SF8B1.desktop
+application/x-extension-xht=userapp-Firefox-4SF8B1.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
+x-scheme-handler/https=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
+x-scheme-handler/chrome=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
+text/html=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
+application/x-extension-htm=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
+application/x-extension-html=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
+application/x-extension-shtml=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
+application/xhtml+xml=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
+application/x-extension-xhtml=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
+application/x-extension-xht=userapp-Firefox-7EDCB1.desktop;userapp-Firefox-0C9BC1.desktop;userapp-Firefox-4SF8B1.desktop;
